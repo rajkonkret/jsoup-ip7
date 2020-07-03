@@ -9,21 +9,21 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/")
-public class MainController {
+@RequestMapping("/users")
+public class UserController {
 
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping("test")
-    public List<User> getHello() {
-       //ReGwiazda:) niedługo będzie livy jak Waldek robił i kosił 200 k na miesiąć;) User user  = new User("Radek", "Janiak");
+    @GetMapping
+    public List<User> getAllUsers() {
         System.out.println(LocalDate.now());
         return userRepository.findAll();
     }
-    @PostMapping("create")
+
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public User saveUser(@RequestBody User user){
+    public User saveUser(@RequestBody User user) {
 
         System.out.println(user);
         return userRepository.save(user);
