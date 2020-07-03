@@ -19,6 +19,7 @@ public class Visit {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     LocalDate dateOfVisit;
+    @Enumerated(EnumType.STRING)
     TypeOfVisit typeOfVisit;
 
     @ManyToOne

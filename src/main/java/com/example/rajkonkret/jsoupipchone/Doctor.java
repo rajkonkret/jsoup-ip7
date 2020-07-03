@@ -14,11 +14,11 @@ public class Doctor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    //@OneToMany(mappedBy = "doctormusze many to  oona itd przećwi")
     Long id;
     String name;
     String surname;
-
+    @Enumerated(EnumType.STRING)
+    TypeOfVisit typeOfVisit;
     @OneToOne
     Visit visit;
     // Specialty specialty;
