@@ -1,5 +1,6 @@
-package com.example.rajkonkret.jsoupipchone;
+package com.example.rajkonkret.jsoupipchone.model;
 
+import com.example.rajkonkret.jsoupipchone.TypeOfVisit;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

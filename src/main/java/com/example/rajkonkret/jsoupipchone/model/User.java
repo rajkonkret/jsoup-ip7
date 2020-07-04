@@ -1,4 +1,4 @@
-package com.example.rajkonkret.jsoupipchone;
+package com.example.rajkonkret.jsoupipchone.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

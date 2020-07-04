@@ -1,7 +1,10 @@
-package com.example.rajkonkret.jsoupipchone;
+package com.example.rajkonkret.jsoupipchone.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.example.rajkonkret.jsoupipchone.StatusYourVisit;
+import com.example.rajkonkret.jsoupipchone.TypeOfVisit;
+import com.example.rajkonkret.jsoupipchone.model.Doctor;
+import com.example.rajkonkret.jsoupipchone.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +22,7 @@ public class Visit {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     LocalDate dateOfVisit;
+    StatusYourVisit status;
     @Enumerated(EnumType.STRING)
     TypeOfVisit typeOfVisit;
 
