@@ -1,5 +1,6 @@
 package com.example.rajkonkret.jsoupipchone.model;
 
+import com.example.rajkonkret.jsoupipchone.Specialty;
 import com.example.rajkonkret.jsoupipchone.TypeOfVisit;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,8 +20,14 @@ public class Doctor {
     String name;
     String surname;
     @Enumerated(EnumType.STRING)
-    TypeOfVisit typeOfVisit;
+    Specialty specialty;
     @OneToOne
     Visit visit;
+
+    public Doctor(String name, String surname, Specialty specialty) {
+        this.name = name;
+        this.surname = surname;
+        this.specialty = specialty;
+    }
     // Specialty specialty;
 }
