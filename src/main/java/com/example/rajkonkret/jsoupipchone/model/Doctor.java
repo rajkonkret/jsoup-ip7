@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Entity
@@ -21,13 +22,21 @@ public class Doctor {
     String surname;
     @Enumerated(EnumType.STRING)
     Specialty specialty;
-    @OneToOne
-    Visit visit;
+    @OneToMany
+
+    Set<Visit> visit;
 
     public Doctor(String name, String surname, Specialty specialty) {
         this.name = name;
         this.surname = surname;
         this.specialty = specialty;
+    }
+
+    public Doctor(String fra, String kjres, Specialty ogólny, Set<Visit> o) {
+        this.name = fra;
+        this.surname = kjres;
+        this.specialty = ogólny;
+        this.visit = o;
     }
     // Specialty specialty;
 }

@@ -1,14 +1,24 @@
 package com.example.rajkonkret.jsoupipchone;
 
 import com.example.rajkonkret.jsoupipchone.model.Doctor;
+import com.example.rajkonkret.jsoupipchone.model.User;
+import com.example.rajkonkret.jsoupipchone.model.Visit;
 import com.example.rajkonkret.jsoupipchone.repository.DoctorRepository;
+import com.example.rajkonkret.jsoupipchone.repository.UserRepository;
+import com.example.rajkonkret.jsoupipchone.repository.VisitRepository;
 import com.example.rajkonkret.jsoupipchone.service.DoctorService;
 import com.example.rajkonkret.jsoupipchone.service.UserService;
+import org.hibernate.event.spi.SaveOrUpdateEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 public class MyRunner implements CommandLineRunner {
@@ -21,6 +31,12 @@ public class MyRunner implements CommandLineRunner {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    VisitRepository visitRepository;
+
     public MyRunner(DoctorRepository doctorRepository, DoctorService doctorService) {
         this.doctorRepository = doctorRepository;
         this.doctorService = doctorService;
@@ -29,21 +45,50 @@ public class MyRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Doctor doctor = new Doctor("fra", "kjres", Specialty.OGÓLNY);
+        Doctor doctor = new Doctor(
+                "fra", "kjres", Specialty.OGÓLNY, new HashSet<>());
         System.out.println(doctor);
-
         doctorRepository.save(doctor);
-        doctorRepository.findAll().forEach(System.out::println);
-        userService.findAllUsers().forEach(System.out::println);
+        User user1 = new User();
+        userRepository.save(user1);
 
-        List<Doctor> doctorRadek = doctorService.findByName("Radek");
-        System.out.println(doctorRadek);
-        doctorRadek.forEach(s -> s.setSpecialty(Specialty.OKULISTA));
-        System.out.println("C L R");
-        System.out.println(doctorRadek);
-        Doctor doctorRadek2 = doctorRepository.findByName("Radek");
-        System.out.println(doctorRadek2);
-        doctorRadek2.setSpecialty(Specialty.CHIRURG);
-        System.out.println(doctorRadek2);
+        Visit visit = new Visit(
+                LocalDate.now(),
+                StatusYourVisit.ORDERED,
+                TypeOfVisit.KONSULTACJA, user1, doctor);
+        System.out.println(visit);
+        visitRepository.save(visit);
+        Visit visit1 = new Visit(
+                LocalDate.now(),
+                StatusYourVisit.ORDERED,
+                TypeOfVisit.RECEPTA, user1, doctor);
+        System.out.println(visit1);
+        visitRepository.save(visit1);
+        Set<Visit> visitSet = new HashSet<>();
+        visitSet.add(visit);
+        visitSet.add(visit1);
+
+        User user = new User(
+                "Radek",
+                " janiak",
+                "123",
+                visitSet);
+        userRepository.save(user);
+        System.out.println(user);
+
+       // doctorRepository.findAll().forEach(System.out::println);
+        //  userService.findAllUsers().forEach(System.out::println);
+
+        userRepository.save(user);
+
+//        List<Doctor> doctorRadek = doctorService.findByName("Radek");
+//        System.out.println(doctorRadek);
+//        doctorRadek.forEach(s -> s.setSpecialty(Specialty.OKULISTA));
+//        System.out.println("C L R");
+//        System.out.println(doctorRadek);
+//        Doctor doctorRadek2 = doctorRepository.findByName("Radek");
+//        System.out.println(doctorRadek2);
+//        doctorRadek2.setSpecialty(Specialty.CHIRURG);
+//        System.out.println(doctorRadek2);
     }
 }

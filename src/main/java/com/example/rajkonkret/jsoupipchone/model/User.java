@@ -3,7 +3,9 @@ package com.example.rajkonkret.jsoupipchone.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.lang.model.element.Element;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -13,6 +15,7 @@ import java.util.Set;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class User {
 
     @Id
@@ -22,14 +25,22 @@ public class User {
     String name;
     String surname;
     String pesel;
-    LocalDate dateOfVisit;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    Set<Visit>  visit = new HashSet<>();
+   // @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany
+    Set<Visit> visit;
 
 
     public User(String user, String surname) {
         this.name = user;
         this.surname = surname;
+    }
+
+
+    public User(String name, String surname, String pesel, Set<Visit> visit) {
+        this.name = name;
+        this.surname = surname;
+        this.pesel = pesel;
+        this.visit = visit;
     }
 
     public Long getId() {
@@ -55,7 +66,6 @@ public class User {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", pesel='" + pesel + '\'' +
-                ", dateOfVisit=" + dateOfVisit +
                 '}';
     }
 }

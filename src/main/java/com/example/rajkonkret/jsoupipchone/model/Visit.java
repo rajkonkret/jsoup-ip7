@@ -22,16 +22,26 @@ public class Visit {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     LocalDate dateOfVisit;
+    @Enumerated(EnumType.STRING)
     StatusYourVisit status;
     @Enumerated(EnumType.STRING)
     TypeOfVisit typeOfVisit;
 
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    User user;
+
+
+
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    User user;
-
-
-    @OneToOne
+    @JoinColumn(referencedColumnName = "id")
     Doctor doctor;
 
+    public Visit(LocalDate dateOfVisit, StatusYourVisit status, TypeOfVisit typeOfVisit, User user, Doctor doctor) {
+        this.dateOfVisit = dateOfVisit;
+        this.status = status;
+        this.typeOfVisit = typeOfVisit;
+        //this.user = user;
+        this.doctor = doctor;
+    }
 }
