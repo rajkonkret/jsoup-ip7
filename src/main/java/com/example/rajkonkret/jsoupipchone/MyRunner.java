@@ -45,41 +45,41 @@ public class MyRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Doctor doctor = new Doctor(
-                "fra", "kjres", Specialty.OGÓLNY, new HashSet<>());
-        System.out.println(doctor);
-        doctorRepository.save(doctor);
-        User user1 = new User();
-        userRepository.save(user1);
-
-        Visit visit = new Visit(
-                LocalDate.now(),
-                StatusYourVisit.ORDERED,
-                TypeOfVisit.KONSULTACJA, user1, doctor);
-        System.out.println(visit);
-        visitRepository.save(visit);
-        Visit visit1 = new Visit(
-                LocalDate.now(),
-                StatusYourVisit.ORDERED,
-                TypeOfVisit.RECEPTA, user1, doctor);
-        System.out.println(visit1);
-        visitRepository.save(visit1);
-        Set<Visit> visitSet = new HashSet<>();
-        visitSet.add(visit);
-        visitSet.add(visit1);
-
-        User user = new User(
-                "Radek",
-                " janiak",
-                "123",
-                visitSet);
-        userRepository.save(user);
-        System.out.println(user);
-
-       // doctorRepository.findAll().forEach(System.out::println);
-        //  userService.findAllUsers().forEach(System.out::println);
-
-        userRepository.save(user);
+//        Doctor doctor = new Doctor(
+//                "fra", "kjres", Specialty.OGÓLNY);
+//        System.out.println(doctor);
+//        doctorRepository.save(doctor);
+//        User user1 = new User();
+//        userRepository.save(user1);
+//
+//        Visit visit = new Visit(
+//                LocalDate.now(),
+//                StatusYourVisit.ORDERED,
+//                TypeOfVisit.KONSULTACJA, user1, doctor);
+//        System.out.println(visit);
+//        visitRepository.save(visit);
+//        Visit visit1 = new Visit(
+//                LocalDate.now(),
+//                StatusYourVisit.ORDERED,
+//                TypeOfVisit.RECEPTA, user1, doctor);
+//        System.out.println(visit1);
+//        visitRepository.save(visit1);
+//        Set<Visit> visitSet = new HashSet<>();
+//        visitSet.add(visit);
+//        visitSet.add(visit1);
+//
+//        User user = new User(
+//                "Radek",
+//                " janiak",
+//                "123",
+//                visitSet);
+//        userRepository.save(user);
+//        System.out.println(user);
+//
+//       // doctorRepository.findAll().forEach(System.out::println);
+//        //  userService.findAllUsers().forEach(System.out::println);
+//
+//        userRepository.save(user);
 
 //        List<Doctor> doctorRadek = doctorService.findByName("Radek");
 //        System.out.println(doctorRadek);

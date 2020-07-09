@@ -34,7 +34,7 @@ public class Visit {
 
 
     @ManyToOne
-    @JoinColumn(referencedColumnName = "id")
+    @JoinColumn(name = "doctor_id")
     Doctor doctor;
 
     public Visit(LocalDate dateOfVisit, StatusYourVisit status, TypeOfVisit typeOfVisit, User user, Doctor doctor) {

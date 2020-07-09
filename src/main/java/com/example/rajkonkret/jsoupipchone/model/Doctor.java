@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -22,9 +23,8 @@ public class Doctor {
     String surname;
     @Enumerated(EnumType.STRING)
     Specialty specialty;
-    @OneToMany
-
-    Set<Visit> visit;
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+    Set<Visit> visit = new HashSet<>();
 
     public Doctor(String name, String surname, Specialty specialty) {
         this.name = name;
