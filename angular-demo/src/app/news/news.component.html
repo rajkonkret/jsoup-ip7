@@ -1,9 +1,15 @@
-<p>news works!</p>
-<div *ngFor="let article of articles">
-    <h2>{{article.no}}</h2>
+<p>Users works!</p>
+<div *ngFor="let article of users">
+    <h2>id: {{article.id}}</h2>
   
       <p>
-        {{article.bid}}
+       name: {{article.name}}
       </p>
+      <p>
+      surname: {{article.surname}}
+      </p>
+      <p>
+        visit: {{article.visit}}
+        </p>
       <a href="{{article.url}}">Read full article</a>
   </div>

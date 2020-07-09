@@ -9,13 +9,16 @@ import { ApiService } from '../api.service';
 export class NewsComponent implements OnInit {
 
   articles;
-
+  users;
   constructor(private apiService: ApiService) { }
   ngOnInit() {
-    this.apiService.getNews().subscribe((data)=>{
-      console.log(data);
-      this.articles = data['rates'];
-    });
+
+   
+    this.apiService.getUsers().subscribe((dataUser)=>{
+      console.log(dataUser);
+      this.users = dataUser
+    }
+    );
   }
 
 }
